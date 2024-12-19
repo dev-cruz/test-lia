@@ -1,14 +1,18 @@
 version: '3'
 services:
-  db:
+  postgres:
     image: postgres
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
-  web:
+  app:
     build: .
     volumes:
       - .:/myapp
     ports:
       - "3000:3000"
     depends_on:
-      - db
+      - postgres
