@@ -3,7 +3,11 @@
 one:
   name: MyString
   chips: 1
+  cards: MyString
+  room: one
 
 two:
   name: MyString
   chips: 1
+  cards: MyString
+  room: two
