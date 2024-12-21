@@ -10,6 +10,7 @@ services:
       - ./tmp/db:/var/lib/postgresql/data
   app:
     build: .
+    command: make startup
     volumes:
       - .:/myapp
     ports:
