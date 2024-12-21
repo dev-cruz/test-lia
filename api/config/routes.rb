@@ -8,5 +8,13 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  resources :players, only: [:index]
+  get "/players" => "players#index"
+  post "/players" => "players#create"
+  delete "/players/:id" => "players#destroy"
+
+  get "/rooms" => "rooms#index"
+  post "/rooms" => "rooms#create"
+  post "/rooms/:id/join" => "rooms#join"
+  post "/rooms/:id/leave" => "rooms#leave"
+  post "/rooms/:id/start" => "rooms#start"
 end
