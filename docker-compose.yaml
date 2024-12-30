@@ -8,15 +8,29 @@ services:
       - "5432:5432"
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
-  app:
-    build: .
+
+  api:
+    build: ./api
     command: make startup
     volumes:
-      - .:/myapp
+      - ./api:/myapp
       - app_bundle:/usr/local/bundle
     ports:
       - "3000:3000"
     depends_on:
       - postgres
+  
+  front:
+    build: ./front
+    command: make startup
+    ports:
+      - "3500:3500"
+    volumes:
+      - ./front:/app
+      - front-node-modules:/app/node_modules
+    environment:
+      - NODE_ENV=development
+
 volumes:
   app_bundle:
+  front-node-modules:
