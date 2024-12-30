@@ -15,29 +15,34 @@ class RoomsController < ApplicationController
   end
 
   def join
-    room = Room.find(params[:id])
-
-    if room.current_players.count == room.max_players
-      render json: { message: "Room is already full" }
-    else
-      player = Player.find(params["player_id"])
-      player.room_id = room.id
-      player.save
-  
-      render json: { message: "Player joined successfully" }
-    end
+    response = RoomService.join_player(params[:id], params["player_id"])
+    render json: response
   end
 
   def leave
-    room = Room.find(params[:id])
-    player = Player.find(params["player_id"])
-    player.room_id = nil
-    player.save
-
-    render json: { message: "Player left successfully" }
+    response = RoomService.remove_player(params[:id], params["player_id"])
+    render json: response
   end
 
   def start
-    room = Room.find(params[:id])
+    response = RoomService.start_game(params[:id])
+    render json: response
+  end
+
+  def action
+    player_action = { player_id: params["player_id"], action: params["player_action"], amount: params["amount"] }
+    response = PlayerActionService.register_action(player_action)
+
+    render json: response
+  end
+
+  def next_phase
+    response = RoomService.next_phase(params[:id])
+    render json: response
+  end
+
+  def end
+    response = RoomService.finish_game(params[:id])
+    render json: response
   end
 end

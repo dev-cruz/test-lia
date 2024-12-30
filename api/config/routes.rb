@@ -17,4 +17,7 @@ Rails.application.routes.draw do
   post "/rooms/:id/join" => "rooms#join"
   post "/rooms/:id/leave" => "rooms#leave"
   post "/rooms/:id/start" => "rooms#start"
+  post "/rooms/:id/action" => "rooms#action"
+  post "/rooms/:id/next-phase" => "rooms#next_phase"
+  post "/rooms/:id/end" => "rooms#end"
 end
