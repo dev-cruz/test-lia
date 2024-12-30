@@ -13,7 +13,10 @@ services:
     command: make startup
     volumes:
       - .:/myapp
+      - app_bundle:/usr/local/bundle
     ports:
       - "3000:3000"
     depends_on:
       - postgres
+volumes:
+  app_bundle:
