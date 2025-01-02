@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   delete "/players/:id" => "players#destroy"
 
   get "/rooms" => "rooms#index"
+  get "/rooms/:id" => "rooms#show"
   post "/rooms" => "rooms#create"
   post "/rooms/:id/join" => "rooms#join"
   post "/rooms/:id/leave" => "rooms#leave"

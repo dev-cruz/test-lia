@@ -20,7 +20,7 @@ class RoomService
 
     return { message: "Room is already full" } unless room.current_players.count < room.max_players
 
-    player = Player.find(params["player_id"])
+    player = Player.find(player_id)
     player.update!(room_id: room.id)
   
     { message: "Player joined successfully" }

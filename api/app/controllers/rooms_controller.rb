@@ -14,6 +14,12 @@ class RoomsController < ApplicationController
     end
   end
 
+  def show
+    room = Room.find(params[:id])
+
+    render json: room.as_json(only: [:id, :name], methods: :current_players), status: :created
+  end
+
   def join
     response = RoomService.join_player(params[:id], params["player_id"])
     render json: response
