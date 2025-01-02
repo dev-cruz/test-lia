@@ -1,3 +1,3 @@
 startup:
 	npm install
-	npm start
+	npm start -- --host 0.0.0.0
