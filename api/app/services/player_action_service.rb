@@ -107,7 +107,8 @@ class PlayerActionService
       message: "Action performed successfully",
       game_state: {
         current_turn: room.current_turn,
-        pot: room.pot
+        pot: room.pot,
+        current_bet: room.current_bet
       }
     }
   end

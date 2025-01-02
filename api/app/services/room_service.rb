@@ -26,6 +26,13 @@ class RoomService
     { message: "Player joined successfully" }
   end
 
+  def self.get_room(room_id)
+    room = Room.find(room_id)
+    community_cards = community_cards_by_phase(room.community_cards, room.phase)
+    room.community_cards = community_cards
+    room
+  end
+
   def self.remove_player(room_id, player_id)
     room = Room.find(room_id)
     player = Player.find(player_id)
@@ -38,6 +45,9 @@ class RoomService
     room = Room.find(room_id)
     deck = generate_deck()
     players = Player.where(id: room.current_players)
+
+    return { message: "Not enough players to start the game" } unless players.count >= 2
+    return { message: "Game already started" } if room.phase
 
     ActiveRecord::Base.transaction do
       players.each do | player |
