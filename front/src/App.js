@@ -59,7 +59,7 @@ function App() {
   }
 
   return (
-    <div className='container p-5 d-flex flex-column'>
+    <div className='d-flex flex-column bg-dark'>
       <Routes>
         <Route
           path='/'

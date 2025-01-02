@@ -12,5 +12,8 @@ export const getRoom = (id) => API.get(`/rooms/${id}`);
 export const joinRoom = (roomId, playerId) => API.post(`/rooms/${roomId}/join`, { player_id: playerId });
 export const leaveRoom = (roomId, playerId) => API.post(`/rooms/${roomId}/leave`, { player_id: playerId });
 export const startGame = (roomId) => API.post(`/rooms/${roomId}/start`);
+export const playerAction = (roomId, payload) => API.post(`/rooms/${roomId}/action`, payload);
+export const nextPhase = (roomId) => API.post(`/rooms/${roomId}/next-phase`);
+export const finishGame = (roomId) => API.post(`/rooms/${roomId}/end`);
 
 export default API;

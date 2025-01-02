@@ -1,0 +1,114 @@
+.table-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+  position: relative;
+}
+
+.poker-table {
+  position: relative;
+  width: 60%;
+  height: 60%;
+  background-color: #317a33;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  z-index: 1;
+}
+
+.table-info {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.community-cards {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.player-seat {
+  position: absolute;
+  text-align: center;
+  width: 100px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid #fff;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  visibility: visible;
+}
+
+.player-info {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 5px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.current-player {
+  font-weight: bold;
+  border: 2px solid gold;
+  padding: 5px;
+}
+
+.player-interface {
+  margin-top: 20px;
+  padding: 15px;
+  width: 90%;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.player-interface h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.action-with-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.action-with-input input {
+  max-width: 200px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.action-with-input button {
+  width: 100px;
+}
+
+.player-cards {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
