@@ -36,7 +36,7 @@ class RoomsController < ApplicationController
   end
 
   def action
-    player_action = { player_id: params["player_id"], action: params["player_action"], amount: params["amount"] }
+    player_action = { player_id: params["player_id"].to_i, action: params["player_action"], amount: params["amount"].to_i }
     response = PlayerActionService.register_action(player_action)
 
     render json: response

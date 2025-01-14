@@ -16,11 +16,10 @@ class PlayersController < ApplicationController
 
   def destroy
     player = Player.find(params[:id])
+    player.destroy
 
-    if player.destroy
-      render json: { message: "Player deleted successfully" }
-    else
-      render json: { error: 'Failed to delete entity' }, status: :unprocessable_entity
-    end
+    render json: { message: "Player deleted successfully" }
+  rescue
+      render json: { error: "Failed to delete entity" }, status: :not_found
   end
 end
