@@ -1,12 +1,13 @@
 class PlayerActionService
   def self.register_action(player_action)
     player = Player.find(player_action[:player_id])
-    action = player_action[:action]
     room = Room.find(player.room_id)
-    is_player_turn = room.current_players[room.current_turn - 1] == player.id
 
     return error_response("Player is inactive", room) unless player.is_active
-    return error_response("Player does not belong to the room") unless player.room_id == room.id
+    return error_response("Player does not belong to the room", room) unless player.room_id == room.id
+
+    action = player_action[:action]
+    is_player_turn = room.current_players[room.current_turn - 1] == player.id
 
     case action
     when "bet"
@@ -32,7 +33,7 @@ class PlayerActionService
     end
 
     if amount > player.chips
-      return error_response("Insufficient chips to bet")
+      return error_response("Insufficient chips to bet", room)
     end
 
     ActiveRecord::Base.transaction do
@@ -57,7 +58,7 @@ class PlayerActionService
     end
 
     if room.current_bet > player.chips
-      return error_response("Insufficient chips to call")
+      return error_response("Insufficient chips to call", room)
     end
 
     ActiveRecord::Base.transaction do
@@ -75,7 +76,7 @@ class PlayerActionService
 
     total_bet = room.current_bet + amount
     if total_bet > player.chips
-      return error_response("Insufficient chips to raise")
+      return error_response("Insufficient chips to raise", room)
     end
 
     ActiveRecord::Base.transaction do

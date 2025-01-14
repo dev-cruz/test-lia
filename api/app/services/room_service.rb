@@ -43,17 +43,20 @@ class RoomService
 
   def self.start_game(room_id)
     room = Room.find(room_id)
-    deck = generate_deck()
+
+    return { message: "Game already started" } if room.phase
+
     players = Player.where(id: room.current_players)
 
     return { message: "Not enough players to start the game" } unless players.count >= 2
-    return { message: "Game already started" } if room.phase
+
+    deck = generate_deck()
 
     ActiveRecord::Base.transaction do
       players.each do | player |
         player.update!(cards: deck.shuffle!.pop(2))
       end
-  
+
       room.update!(community_cards: deck.shuffle!.pop(5), phase: "pre-flop")
     end
 
