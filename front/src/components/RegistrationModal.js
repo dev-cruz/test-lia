@@ -20,7 +20,7 @@ const RegistrationModal = ({ isOpen, onRegister }) => {
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title">Register</h5>
+            <h5 className="modal-title">Register User</h5>
           </div>
           <div className="modal-body">
             <input
